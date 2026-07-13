@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 void runningSum(int *nums, size_t nums_size) {
     // Time Complexity -> O(n)
@@ -32,17 +33,25 @@ bool contains_duplicate(int *nums, size_t nums_size) {
 	return false;
 }
 
+bool is_palindrome(char *str) {
+	size_t left = 0;
+	size_t right = strlen(str) - 1;
+
+	while (left < right) {
+		if (str[left] != str[right]) return false;
+		left++;
+		right--;
+	}
+
+	return true;
+}
 
 int main() {
-	int nums[] = {1, 2, 3, 1};
-	size_t nums_size = sizeof(nums) / sizeof(nums[0]);
-	
-	printf("Input: [ ");
-	for (size_t i = 0; i < nums_size; i++) printf("%d ", nums[i]);
-	printf("]\n");
+	char *word = "racecar";
+	printf(">> Testing word: %s\n", word);
 
-   	bool result = contains_duplicate(nums, nums_size);
-	printf("Result: %s\n", result ? "true" : "false");
+	bool result = is_palindrome(word);
+	printf(">> Result: %s\n", result ? "true" : "false"); 
 
     	return EXIT_SUCCESS;
 }
